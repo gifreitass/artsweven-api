@@ -1,4 +1,4 @@
 export interface ICategory {
     name: string,
-    id?: number
+    enabled: boolean
 }
