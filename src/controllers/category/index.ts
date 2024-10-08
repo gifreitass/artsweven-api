@@ -1,5 +1,9 @@
-import create from "./create";
+import createCategoryController from "./create";
+import deleteCategoryController from "./deleteById";
+import getCategoryByIdController from "./getById";
 
 export const CategoryControllers = {
-    create
+    createCategoryController,
+    deleteCategoryController,
+    getCategoryByIdController
 }

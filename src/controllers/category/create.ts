@@ -16,7 +16,7 @@ const createCategoryController = async (req: Request<any, any, IBodyProps>, res:
     try {
         await createSchema.validate(req.body)
 
-        const result = await CategoryModel.create(req.body)
+        const result = await CategoryModel.createCategory(req.body)
 
         res.status(201).json({ data: result })
     } catch (error: any) {
