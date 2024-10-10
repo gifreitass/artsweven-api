@@ -13,6 +13,8 @@ app.get('/', (req: Request, res: Response) => {
 app.post('/category', CategoryControllers.createCategoryController)
 app.delete('/category/:id', CategoryControllers.deleteCategoryController)
 app.get('/category/:id', CategoryControllers.getCategoryByIdController)
+app.get('/category', CategoryControllers.getCategoryController)
+app.put('/category/:id', CategoryControllers.updateCategoryController)
 
 app.listen(port, () => {
     console.log(`App rodando na porta ${port}`)
