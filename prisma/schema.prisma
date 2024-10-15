@@ -12,3 +12,11 @@ model Category {
   name String
   enabled Boolean @default(true)
 }
+
+model Product {
+  id Int @id @default(autoincrement())
+  name String
+  description String
+  value Decimal
+  image String
+}
