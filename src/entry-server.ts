@@ -2,6 +2,7 @@ import { Request, Response } from "express"
 import express from 'express'
 import { CategoryControllers } from "./controllers/category";
 import { ProductControllers } from "./controllers/product";
+import { ProductCategoryControllers } from "./controllers/product-category";
 
 const app = express()
 app.use(express.json());
@@ -22,6 +23,12 @@ app.get('/product', ProductControllers.getProductController)
 app.get('/product/:id', ProductControllers.getProductByIdController)
 app.delete('/product/:id', ProductControllers.deleteProductController)
 app.put('/product/:id', ProductControllers.updateProductController)
+
+app.post('/product-category', ProductCategoryControllers.createProductCategoryController)
+app.get('/product-category')
+app.get('/product-category/:id')
+app.delete('/product-category/:id')
+app.put('/product-category/:id')
 
 app.listen(port, () => {
     console.log(`App rodando na porta ${port}`)

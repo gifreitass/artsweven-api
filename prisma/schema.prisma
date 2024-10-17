@@ -11,6 +11,7 @@ model Category {
   id Int @id @default(autoincrement())
   name String
   enabled Boolean @default(true)
+  productCategory ProductCategory[]
 }
 
 model Product {
@@ -19,4 +20,13 @@ model Product {
   description String
   value Decimal
   image String
+  productCategory ProductCategory[]
+}
+
+model ProductCategory {
+  id Int @id @default(autoincrement())
+  categoryId Int 
+  productId Int
+  category Category @relation(fields: [categoryId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
 }
