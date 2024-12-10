@@ -29,8 +29,31 @@ const getProductCategoryById = async (productCategoryId: number) => {
     return result
 }
 
+const getCategoryByProduct = async (productId: number) => {
+    const result = await prisma.productCategory.findMany({
+        where: {
+            productId: productId,     
+        }
+    })
+
+    return result
+}
+
+//posso ter mais de uma categoria informada como parametro
+const getProductByCategory = async (categoryId: number) => {
+    const result = await prisma.productCategory.findMany({
+        where: {
+            categoryId: categoryId
+        }
+    })
+
+    return result
+}
+
 export const ProductCategoryModels = {
     createProductCategory,
     deleteProductCategory,
-    getProductCategoryById
+    getProductCategoryById,
+    getCategoryByProduct,
+    getProductByCategory
 }

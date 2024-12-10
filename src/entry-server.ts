@@ -25,10 +25,7 @@ app.delete('/product/:id', ProductControllers.deleteProductController)
 app.put('/product/:id', ProductControllers.updateProductController)
 
 app.post('/product-category', ProductCategoryControllers.createProductCategoryController)
-app.get('/product-category')
-app.get('/product-category/:id')
-app.delete('/product-category/:id')
-app.put('/product-category/:id')
+app.delete('/product-category/:id', ProductCategoryControllers.deleteProductCategoryController)
 
 app.listen(port, () => {
     console.log(`App rodando na porta ${port}`)

@@ -29,6 +29,16 @@ const getCategoryById = async (categoryId: number) => {
     return result
 }
 
+const getCategoriesById = async (categoryIds: number[]) => {
+    const result = await prisma.category.findMany({
+        where: {
+            id: { in: categoryIds }
+        }
+    })
+
+    return result
+}
+
 const getCategory = async () => {
     const result = await prisma.category.findMany()
 
@@ -51,5 +61,6 @@ export const CategoryModel = {
     deleteCategory,
     getCategoryById,
     getCategory,
-    updateCategory
+    updateCategory,
+    getCategoriesById
 }
