@@ -25,6 +25,16 @@ const getProductById = async (productId: number) => {
     return result
 }
 
+const getProductsById = async (productIds: number[]) => {
+    const result = await prisma.product.findMany({
+        where: {
+            id: { in: productIds }
+        }
+    })
+
+    return result
+}
+
 const deleteProduct = async (productId: number) => {
     const result = await prisma.product.delete({
         where: {
@@ -51,5 +61,6 @@ export const ProductModel = {
     getProduct, 
     getProductById,
     deleteProduct,
-    updateProduct
+    updateProduct,
+    getProductsById
 }

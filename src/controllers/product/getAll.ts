@@ -14,6 +14,9 @@ const getProductController = async (req: Request<any, any, any, IQueryProps>, re
             const productsId = products.map((product) => {
                 return product.productId
             })
+            const result = await ProductModel.getProductsById(productsId)
+            res.status(200).json({ data: result })
+            return
         }
 
         const result = await ProductModel.getProduct()
