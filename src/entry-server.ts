@@ -1,11 +1,13 @@
 import { Request, Response } from "express"
 import express from 'express'
+import cors from 'cors'
 import { CategoryControllers } from "./controllers/category";
 import { ProductControllers } from "./controllers/product";
 import { ProductCategoryControllers } from "./controllers/product-category";
 
 const app = express()
 app.use(express.json());
+app.use(cors())
 const port = 3001
 
 app.get('/', (req: Request, res: Response) => {
