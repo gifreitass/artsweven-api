@@ -11,7 +11,7 @@ const getCategoryController = async (req: Request<any, any, any, IQueryProps>, r
     try {
         //retornar as categorias de um produto
         if (req.query.productId) {
-            const productCategories = await ProductCategoryModels.getCategoryByProduct(Number(req.query.productId))
+            const productCategories = await ProductCategoryModels.getCategoriesByProduct(Number(req.query.productId))
             const categoryIds = productCategories.map((productCategory) => {
                 return productCategory.categoryId
             })

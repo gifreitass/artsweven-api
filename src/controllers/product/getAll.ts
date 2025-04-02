@@ -10,7 +10,7 @@ interface IQueryProps {
 const getProductController = async (req: Request<any, any, any, IQueryProps>, res: Response<ResponsePayload>) => {
     try {
         if (req.query.categoryId) {
-            const products = await ProductCategoryModels.getProductByCategory(Number(req.query.categoryId))
+            const products = await ProductCategoryModels.getProductsByCategory(Number(req.query.categoryId))
             const productsId = products.map((product) => {
                 return product.productId
             })
