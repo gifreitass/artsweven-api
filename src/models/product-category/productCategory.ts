@@ -1,7 +1,8 @@
+import { ProductCategory } from "@prisma/client";
 import { prisma } from "../../database/database-client";
-import { IProductCategory } from "../../types/productCategory.types";
+import { SelectProductCategory } from "../../types/productCategory.types";
 
-const createProductCategory = async (productCategory: IProductCategory) => {
+const createProductCategory = async (productCategory: Omit<ProductCategory, 'id'>) => {
     const result = await prisma.productCategory.create({
         data: productCategory
     })
@@ -29,21 +30,18 @@ const getProductCategoryById = async (productCategoryId: number) => {
     return result
 }
 
-const getCategoriesByProduct = async (productId: number) => {
+const getProductAndCategory = async (productId: number | null, categoryId: number | null): Promise<SelectProductCategory[]> => {
     const result = await prisma.productCategory.findMany({
         where: {
-            productId: productId,     
-        }
-    })
-
-    return result
-}
-
-//posso ter mais de uma categoria informada como parametro
-const getProductsByCategory = async (categoryId: number) => {
-    const result = await prisma.productCategory.findMany({
-        where: {
-            categoryId: categoryId
+            ...(productId !== null && { productId: productId }),
+            ...(categoryId !== null && { categoryId: categoryId })     
+        },
+        select: {
+            category: true,
+            categoryId: true,
+            productId: true,
+            id: true,
+            product: true
         }
     })
 
@@ -54,6 +52,5 @@ export const ProductCategoryModels = {
     createProductCategory,
     deleteProductCategory,
     getProductCategoryById,
-    getCategoriesByProduct,
-    getProductsByCategory
+    getProductAndCategory,
 }

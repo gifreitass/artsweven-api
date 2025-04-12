@@ -7,16 +7,17 @@ interface IParamProps {
     id: number
 }
 
-const deleteCategoryController = async (req: Request<IParamProps>, res: Response<ResponsePayload>) => {
+const deleteCategoryController = async (req: Request<IParamProps>, res: Response<ResponsePayload<boolean>>) => {
     try {
-        const existCategory = await CategoryModel.getCategoryById(Number(req.params.id))
+        const categoryId = Number(req.params.id)
+        const existCategory = await CategoryModel.getCategoryById(categoryId)
 
         if (!existCategory) {
             res.status(400).json({ error: { message: `A categoria de id ${req.params.id} não existe` } })
             return
         }
 
-        const associatedCategory = await ProductCategoryModels.getProductsByCategory(Number(req.params.id))
+        const associatedCategory = await ProductCategoryModels.getProductAndCategory(null, categoryId)
 
         if (associatedCategory.length > 0) {
             res.status(400).json({ error: { message: `A categoria está associada a um produto` } })

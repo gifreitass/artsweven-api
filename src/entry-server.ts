@@ -27,6 +27,7 @@ app.delete('/product/:id', ProductControllers.deleteProductController)
 app.put('/product/:id', ProductControllers.updateProductController)
 
 app.post('/product-category', ProductCategoryControllers.createProductCategoryController)
+app.get('/product-category', ProductCategoryControllers.getProductCategoryController)
 app.delete('/product-category/:id', ProductCategoryControllers.deleteProductCategoryController)
 
 app.listen(port, () => {
