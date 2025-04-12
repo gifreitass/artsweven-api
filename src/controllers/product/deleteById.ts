@@ -6,7 +6,7 @@ interface IParamProps {
     id: number
 }
 
-const deleteProductController = async (req: Request<IParamProps>, res: Response<ResponsePayload>) => {
+const deleteProductController = async (req: Request<IParamProps>, res: Response<ResponsePayload<boolean>>) => {
     try {
         const existProduct = await ProductModel.getProductById(Number(req.params.id))
 

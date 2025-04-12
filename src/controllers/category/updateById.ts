@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { ResponsePayload } from "../../types/express.types";
 import { CategoryModel } from "../../models/category/category";
 import * as yup from 'yup'
+import { Category } from "@prisma/client";
 interface IParamProps {
     id: number
 }
@@ -16,7 +17,7 @@ const createSchema = yup.object({
     enabled: yup.boolean()
 })
 
-const updateCategoryController = async (req: Request<IParamProps, any, IBodyProps>, res: Response<ResponsePayload>) => {
+const updateCategoryController = async (req: Request<IParamProps, any, IBodyProps>, res: Response<ResponsePayload<Category>>) => {
     try {
         const existCategory = await CategoryModel.getCategoryById(Number(req.params.id))
 

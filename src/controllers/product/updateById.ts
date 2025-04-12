@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { ResponsePayload } from "../../types/express.types";
 import { ProductModel } from "../../models/product/product";
 import * as yup from 'yup'
+import { Product } from "@prisma/client";
 
 interface IParamProps {
     id: number
@@ -21,7 +22,7 @@ const createSchema = yup.object({
     image: yup.string().required()
 })
 
-const updateProductController = async (req: Request<IParamProps, any, IBodyProps>, res: Response<ResponsePayload>) => {
+const updateProductController = async (req: Request<IParamProps, any, IBodyProps>, res: Response<ResponsePayload<Product>>) => {
     try {
         const existProduct = await ProductModel.getProductById(Number(req.params.id))
 

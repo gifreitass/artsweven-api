@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { ResponsePayload } from "../../types/express.types";
 import * as yup from 'yup'
 import { ProductModel } from "../../models/product/product";
+import { Product } from "@prisma/client";
 
 interface IBodyProps {
     name: string,
@@ -17,7 +18,7 @@ const createSchema = yup.object({
     image: yup.string().required()
 })
 
-const createProductController = async (req: Request<any, any, IBodyProps>, res: Response<ResponsePayload>) => {
+const createProductController = async (req: Request<any, any, IBodyProps>, res: Response<ResponsePayload<Product>>) => {
     try {
         await createSchema.validate(req.body)
 

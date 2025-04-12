@@ -6,12 +6,13 @@ interface IParamProps {
     id: number
 }
 
-const deleteProductCategoryController = async (req: Request<IParamProps>, res: Response<ResponsePayload>) => {
+const deleteProductCategoryController = async (req: Request<IParamProps>, res: Response<ResponsePayload<boolean>>) => {
     try {
         const existProductCategory = await ProductCategoryModels.getProductCategoryById(Number(req.params.id))
 
         if (!existProductCategory) {
             res.status(400).json({ error: { message: `O registro de id ${req.params.id} não existe` } })
+            return
         }
 
         await ProductCategoryModels.deleteProductCategory(Number(req.params.id))

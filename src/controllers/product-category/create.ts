@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { ResponsePayload } from "../../types/express.types";
 import * as yup from 'yup'
 import { ProductCategoryModels } from "../../models/product-category/productCategory";
+import { ProductCategory } from "@prisma/client";
 
 interface IBodyProps {
     categoryId: number,
@@ -13,7 +14,7 @@ const createSchema = yup.object({
     productId: yup.number().required()
 })
 
-const createProductCategoryController = async (req: Request<any, any, IBodyProps>, res: Response<ResponsePayload>) => {
+const createProductCategoryController = async (req: Request<any, any, IBodyProps>, res: Response<ResponsePayload<ProductCategory>>) => {
     try {
         await createSchema.validate(req.body)
 

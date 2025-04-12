@@ -1,5 +1,5 @@
-export type ResponsePayload = {
-    data: any
+export type ResponsePayload<DataType> = {
+    data: DataType
 } | {
     error: {
         message: string
