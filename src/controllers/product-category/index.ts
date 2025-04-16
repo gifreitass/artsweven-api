@@ -1,5 +1,5 @@
 import createProductCategoryController from "./create";
-import deleteProductCategoryController from "./deleteById";
+import deleteProductCategoryController from "./deleteByProductId";
 import getProductCategoryController from "./getAll"
 
 export const ProductCategoryControllers = {

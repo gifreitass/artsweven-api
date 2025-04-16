@@ -10,10 +10,10 @@ const createProductCategory = async (productCategory: Omit<ProductCategory, 'id'
     return result
 }
 
-const deleteProductCategory = async (productCategoryId: number) => {
-    const result = await prisma.productCategory.delete({
+const deleteProductCategory = async (productId: number) => {
+    const result = await prisma.productCategory.deleteMany({
         where: {
-            id: productCategoryId
+            productId: productId
         }
     })
 
