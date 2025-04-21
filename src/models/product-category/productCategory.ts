@@ -3,11 +3,22 @@ import { prisma } from "../../database/database-client";
 import { SelectProductCategory } from "../../types/productCategory.types";
 
 const createProductCategory = async (productCategory: Omit<ProductCategory, 'id'>) => {
-    const result = await prisma.productCategory.create({
-        data: productCategory
+    const existAssociation = await prisma.productCategory.findFirst({
+        where: {
+            categoryId: productCategory.categoryId,
+            productId: productCategory.productId
+        }
     })
 
-    return result
+    if (!existAssociation) {
+        const result = await prisma.productCategory.create({
+            data: productCategory
+        })
+
+        return result
+    }
+
+    return null
 }
 
 const deleteProductCategory = async (productId: number) => {
@@ -34,7 +45,7 @@ const getProductAndCategory = async (productId: number | null, categoryId: numbe
     const result = await prisma.productCategory.findMany({
         where: {
             ...(productId !== null && { productId: productId }),
-            ...(categoryId !== null && { categoryId: categoryId })     
+            ...(categoryId !== null && { categoryId: categoryId })
         },
         select: {
             category: true,

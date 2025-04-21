@@ -20,6 +20,11 @@ const createProductCategoryController = async (req: Request<any, any, IBodyProps
 
         const result = await ProductCategoryModels.createProductCategory(req.body)
 
+        if (!result) {
+            res.status(400).json({ error: { message: 'O produto já está associado com a categoria' } })
+            return
+        }
+
         res.status(201).json({ data: result })
     } catch (error: any) {
         res.status(400).json({ error: { message: error.message } })
