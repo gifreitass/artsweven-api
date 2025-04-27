@@ -15,6 +15,15 @@ const getProduct = async () => {
     return result
 }
 
+//mudar product.image
+
+const getProductImageUrl = async () => {
+    //ler o arquivo da pasta uploads
+    //pegar url do arquivo 
+}
+
+//get product with image
+
 const getProductById = async (productId: number) => {
     const result = await prisma.product.findUnique({
         where: {

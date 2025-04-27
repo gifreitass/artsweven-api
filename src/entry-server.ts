@@ -4,6 +4,7 @@ import cors from 'cors'
 import { CategoryControllers } from "./controllers/category";
 import { ProductControllers } from "./controllers/product";
 import { ProductCategoryControllers } from "./controllers/product-category";
+import { productImageUpload } from "./middlewares/multer";
 
 const app = express()
 app.use(express.json());
@@ -29,6 +30,8 @@ app.put('/product/:id', ProductControllers.updateProductController)
 app.post('/product-category', ProductCategoryControllers.createProductCategoryController)
 app.get('/product-category', ProductCategoryControllers.getProductCategoryController)
 app.delete('/product-category', ProductCategoryControllers.deleteProductCategoryController)
+
+app.post('/product-image/:productId', productImageUpload.single('photo'), ProductControllers.uploadImage)
 
 app.listen(port, () => {
     console.log(`App rodando na porta ${port}`)
