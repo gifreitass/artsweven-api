@@ -4,7 +4,7 @@ import { ProductModel } from "../../models/product/product";
 import { Product } from "@prisma/client";
 
 interface IParamProps {
-    id: number
+    id: string
 }
 
 const getProductByIdController = async (req: Request<IParamProps>, res: Response<ResponsePayload<Product>>) => {

@@ -4,7 +4,7 @@ import { CategoryModel } from "../../models/category/category";
 import { ProductCategoryModels } from "../../models/product-category/productCategory";
 
 interface IParamProps {
-    id: number
+    id: string
 }
 
 const deleteCategoryController = async (req: Request<IParamProps>, res: Response<ResponsePayload<boolean>>) => {

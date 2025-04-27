@@ -3,7 +3,7 @@ import { ResponsePayload } from "../../types/express.types";
 import { ProductModel } from "../../models/product/product";
 
 interface IParamProps {
-    id: number
+    id: string
 }
 
 const deleteProductController = async (req: Request<IParamProps>, res: Response<ResponsePayload<boolean>>) => {

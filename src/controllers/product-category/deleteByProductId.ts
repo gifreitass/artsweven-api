@@ -3,7 +3,7 @@ import { ResponsePayload } from "../../types/express.types";
 import { ProductCategoryModels } from "../../models/product-category/productCategory";
 
 interface IQueryProps {
-    productId?: number
+    productId?: string
 }
 
 const deleteProductCategoryController = async (req: Request<any, any, any, IQueryProps>, res: Response<ResponsePayload<boolean>>) => {
@@ -16,7 +16,7 @@ const deleteProductCategoryController = async (req: Request<any, any, any, IQuer
         const existProduct = await ProductCategoryModels.getProductAndCategory(Number(req.query.productId), null)
 
         if (existProduct.length === 0) {
-            res.status(400).json({ error: { message: `O registro com o produto de id ${req.query.productId} não existe` } })
+            res.status(204).send()
             return
         }
 

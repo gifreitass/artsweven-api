@@ -5,7 +5,7 @@ import * as yup from 'yup'
 import { Product } from "@prisma/client";
 
 interface IParamProps {
-    id: number
+    id: string
 }
 
 interface IBodyProps {

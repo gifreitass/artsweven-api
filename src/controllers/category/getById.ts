@@ -4,7 +4,7 @@ import { CategoryModel } from "../../models/category/category"
 import { Category } from "@prisma/client"
 
 interface IParamProps {
-    id: number
+    id: string
 }
 
 const getCategoryByIdController = async (req: Request<IParamProps>, res: Response<ResponsePayload<Category>>) => {

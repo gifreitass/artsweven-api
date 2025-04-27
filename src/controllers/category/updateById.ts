@@ -4,7 +4,7 @@ import { CategoryModel } from "../../models/category/category";
 import * as yup from 'yup'
 import { Category } from "@prisma/client";
 interface IParamProps {
-    id: number
+    id: string
 }
 
 interface IBodyProps {

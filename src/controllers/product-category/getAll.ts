@@ -4,8 +4,8 @@ import { ProductCategoryModels } from "../../models/product-category/productCate
 import { SelectProductCategory } from "../../types/productCategory.types"
 
 interface IQueryProps {
-    productId?: number,
-    categoryId?: number
+    productId?: string,
+    categoryId?: string
 }
 
 const getProductCategoryController = async (req: Request<any, any, any, IQueryProps>, res: Response<ResponsePayload<SelectProductCategory[]>>) => {
