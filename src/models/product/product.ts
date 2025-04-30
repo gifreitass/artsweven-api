@@ -1,7 +1,7 @@
 import { prisma } from "../../database/database-client"
 import { IProduct } from "../../types/product.types"
 
-const createProduct = async (product: IProduct) => {
+const createProduct = async (product: Omit<IProduct, 'image'>) => {
     const result = await prisma.product.create({
         data: product
     })
@@ -14,8 +14,6 @@ const getProduct = async () => {
 
     return result
 }
-
-//mudar product.image
 
 const getProductImageUrl = async () => {
     //ler o arquivo da pasta uploads
@@ -54,12 +52,25 @@ const deleteProduct = async (productId: number) => {
     return result
 }
 
-const updateProduct = async (productId: number, product: IProduct) => {
+const updateProduct = async (productId: number, product: Omit<IProduct, 'image'>) => {
     const result = await prisma.product.update({
         where: {
             id: productId
         },
         data: product
+    })
+
+    return result
+}
+
+const updateProductImage = async (productId: number, pathImage: string) => {
+    const result = await prisma.product.update({
+        where: {
+            id: productId 
+        },
+        data: {
+            image: pathImage
+        }
     })
 
     return result
@@ -71,5 +82,6 @@ export const ProductModel = {
     getProductById,
     deleteProduct,
     updateProduct,
-    getProductsById
+    getProductsById,
+    updateProductImage
 }

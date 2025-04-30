@@ -31,7 +31,8 @@ app.post('/product-category', ProductCategoryControllers.createProductCategoryCo
 app.get('/product-category', ProductCategoryControllers.getProductCategoryController)
 app.delete('/product-category', ProductCategoryControllers.deleteProductCategoryController)
 
-app.post('/product-image/:productId', productImageUpload.single('photo'), ProductControllers.uploadImage)
+app.use('/product-image/:productId', productImageUpload.single('photo'))
+app.post('/product-image/:productId', ProductControllers.uploadImage)
 
 app.listen(port, () => {
     console.log(`App rodando na porta ${port}`)
