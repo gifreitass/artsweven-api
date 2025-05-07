@@ -26,11 +26,15 @@ const uploadImage = async (req: Request<UploadImageParams>, res: Response<Respon
         }
 
         if (product.image) {
-            await fs.unlinkSync(product.image)
-            const result = await ProductModel.updateProductImage(Number(productId), uploadedFile.path)
-            res.status(200).json({ data: result })
-            return
+            const imageExists = fs.existsSync(product.image)
+            if (imageExists) {
+                await fs.unlinkSync(product.image)
+            }
         }
+
+        const result = await ProductModel.updateProductImage(Number(productId), uploadedFile.path)
+        res.status(200).json({ data: result })
+        return
     } catch (error: any) {
         res.status(400).json({ error: { message: error.message } })
     }
