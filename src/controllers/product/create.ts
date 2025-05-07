@@ -8,14 +8,12 @@ interface IBodyProps {
     name: string,
     description: string,
     value: number,
-    image: string
 }
 
 const createSchema = yup.object({
     name: yup.string().required(),
     description: yup.string().required(),
     value: yup.number().required(),
-    image: yup.string().required()
 })
 
 const createProductController = async (req: Request<any, any, IBodyProps>, res: Response<ResponsePayload<Product>>) => {
